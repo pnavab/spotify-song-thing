@@ -1,5 +1,5 @@
 config.json
 myenv
 *.db
-.cache
-_pycache
+.cache*
+__pycache__
