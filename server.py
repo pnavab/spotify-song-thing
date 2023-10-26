@@ -1,9 +1,9 @@
 from fastapi import FastAPI, Request, HTTPException, Response
 import json
 import uvicorn
+from datetime import datetime
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
-import spotipy.util
 
 import sqlite_helpers
 
@@ -32,7 +32,10 @@ async def get_current_song(request: Request):
     artist_details = sp.artist(artist_uri)
     genres = artist_details['genres']
 
-    response = { "song": song, "artist": artist, "artist_uri": artist_uri, "genres": genres }
+    hour = datetime.now().hour
+    print(hour)
+
+    response = { "song": song, "artist": artist, "artist_uri": artist_uri, "genres": genres, "hour": hour }
     return response
 
 if __name__ == "__main__":
